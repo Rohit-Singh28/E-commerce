@@ -1,9 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify';
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import addToCart from '../helper/addToCart';
+import Context from '../context';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -12,7 +14,8 @@ const VerticalCard = ({ category, title }) => {
     const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(false);
     const demoProduct = new Array(8).fill(null);
-    const scrollElement = useRef()
+    const scrollElement = useRef();
+    const {fetchCartDetail} = useContext(Context)
 
     const fetchData = async () => {
         try {
@@ -35,6 +38,20 @@ const VerticalCard = ({ category, title }) => {
 
     const handleRightMove = () => {
         scrollElement.current.scrollLeft += 300
+    }
+
+    const handleAddToCart = async (e,id) => {
+        e.stopPropagation();
+        e.preventDefault();
+        const response =  await addToCart(id);
+        if(response.data.success == true){
+            toast.success(response?.data?.message);
+            fetchCartDetail();
+        }
+        else{
+            toast.error(response?.data?.message);
+        }
+        
     }
 
     useEffect(() => {
@@ -83,7 +100,7 @@ const VerticalCard = ({ category, title }) => {
                                             <p className='text-slate-600'>{ele.category}</p>
                                             <p className='font-bold text-red-600 text-lg mx-2 inline '>&#8377; {ele.sellingPrice.toLocaleString('en-In')}</p>
                                             <p className='text-slate-600 text-lg mx-2 inline  line-through'>&#8377; {ele.price.toLocaleString('en-In')}</p>
-                                            <button className='border w-full px-3  bg-red-500 rounded-2xl text-white hover:bg-red-600 duration-300'>Add to cart</button>
+                                            <button className='border w-full px-3  bg-red-500 rounded-2xl text-white hover:bg-red-600 duration-300' onClick={(e) => handleAddToCart(e, ele?._id)}>Add to cart</button>
                                         </div>
                                     </div>
                                 </Link>

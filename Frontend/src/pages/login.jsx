@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useLayoutEffect, useState } from 'react'
 import signinLogo from '../assets/singinLogo/signin.gif'
 import { FaRegEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
@@ -16,7 +16,7 @@ const Signup = () => {
     password: "",
   })
   const navigate = useNavigate();
-  const { fetchUserInfo } = useContext(Context)
+  const { fetchUserInfo,fetchCartDetail } = useContext(Context)
 
   const eyeClicked = () => {
     setShow((prev) => {
@@ -43,6 +43,7 @@ const Signup = () => {
         toast.success(response.data.message);
         navigate('/')
         fetchUserInfo(); 
+        fetchCartDetail();
         // setTimeout(() => { navigate('/');window.location.reload(false); }, 1000)
       }
       else {
@@ -55,6 +56,9 @@ const Signup = () => {
     }
   }
 
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  });
 
   return (
     <section>

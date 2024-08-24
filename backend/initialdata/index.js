@@ -7,15 +7,19 @@ main()
 .then(() => {
     console.log("Connection successful");
 })
-.catch(err => console.log(err))
+.catch(err => console.log(err));
 
-async function main(){
-    await mongoose.connect(process.env.MONGOOSE_URL);
+async function main (){
+    await mongoose.connect("mongodb+srv://rohitkamaldevsingh:C5bzBiW0jGhP1XoR@cluster0.zqy1svn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
 }
 
 const initDb = async () => {
+    // console.log(initData.data);
+    
     await Product.deleteMany({});
-    await Product.insertMany(initData.data);
+    const res = await Product.insertMany(initData.data);
+    console.log(res);
+    
 } 
 
 initDb();

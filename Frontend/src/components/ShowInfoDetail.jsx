@@ -1,7 +1,28 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { IoStar } from "react-icons/io5";
+import addToCart from '../helper/addToCart';
+import { toast } from 'react-toastify';
+import Context from '../context';
+
 
 const ShowInfoDetail = ({ productDetail }) => {
+
+  const {fetchCartDetail} = useContext  (Context)
+
+  const handleAddToCart = async (e,id) => {
+    e.stopPropagation();
+    e.preventDefault();
+    console.log(id);
+    const response =  await addToCart(id);
+    if(response.data.success == true){
+        toast.success(response?.data?.message);
+        fetchCartDetail();
+    }
+    else{
+        toast.error(response?.data?.message);
+    }
+    
+}
   // console.log(productDetail);
   return (
     <div className='flex flex-col gap-4 md:gap-6'>
@@ -24,8 +45,8 @@ const ShowInfoDetail = ({ productDetail }) => {
       </div>
 
       <div className='flex items-center gap-3 my-2'>
-        <button className='border-2 border-red-600 rounded px-3 py-1 min-w-[120px] text-red-600 font-medium hover:bg-red-600 hover:text-white' onClick={(e) => handleBuyProduct(e, data?._id)}>Buy</button>
-        <button className='border-2 border-red-600 rounded px-3 py-1 min-w-[120px] font-medium text-white bg-red-600 hover:text-red-600 hover:bg-white' onClick={(e) => handleAddToCart(e, data?._id)}>Add To Cart</button>
+        <button className='border-2 border-red-600 rounded px-3 py-1 min-w-[120px] text-red-600 font-medium hover:bg-red-600 hover:text-white' onClick={(e) => handleBuyProduct(e, productDetail?._id)}>Buy</button>
+        <button className='border-2 border-red-600 rounded px-3 py-1 min-w-[120px] font-medium text-white bg-red-600 hover:text-red-600 hover:bg-white' onClick={(e) => handleAddToCart(e, productDetail?._id)}>Add To Cart</button>
       </div>
       <div>
         <p className='font-semibold'>Description : </p>

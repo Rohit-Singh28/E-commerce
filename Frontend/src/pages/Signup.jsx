@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import signinLogo from '../assets/singinLogo/signin.gif'
 import { FaRegEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
@@ -73,6 +73,9 @@ const Signup = () => {
     }
   }
 
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  });
 
   return (
     <section>

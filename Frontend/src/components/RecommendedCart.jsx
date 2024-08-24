@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
+import addToCart from '../helper/addToCart';
+import Context from '../context';
+import { toast } from 'react-toastify';
 
 const RecommendedCart = ({category,title}) => {
     console.log(category);
     const [product,setProduct] = useState();
     const[loading,setLoading] = useState();
     const demoProduct = new Array(9).fill(null)
+    const {fetchCartDetail} = useContext(Context)
+
 
     const fetchData = async () => {
         try {
@@ -24,6 +29,20 @@ const RecommendedCart = ({category,title}) => {
         }
     }
 
+    const handleAddToCart = async (e,id) => {
+        e.stopPropagation();
+        e.preventDefault();
+        const response =  await addToCart(id);
+        if(response.data.success == true){
+            toast.success(response?.data?.message);
+            fetchCartDetail();
+        }
+        else{
+            toast.error(response?.data?.message);
+        }
+        
+    }
+
     useEffect(() => {
         fetchData();
       }, [])
@@ -34,7 +53,7 @@ const RecommendedCart = ({category,title}) => {
     <div className='my-8 mb-8'>
     <h1 className='text-xl md:text-2xl font-semibold'>{title}</h1>
 
-    <div className='flex my-4 gap-6 flex-wrap ' >
+    <div className='flex my-4 gap-6 flex-wrap' >
 
         {
             loading ? (demoProduct?.map((ele) => {
@@ -64,7 +83,7 @@ const RecommendedCart = ({category,title}) => {
                                     <p className='text-slate-600'>{ele.category}</p>
                                     <p className='font-bold text-red-600 text-lg mx-2 inline '>&#8377; {ele.sellingPrice.toLocaleString('en-In')}</p>
                                     <p className='text-slate-600 text-lg mx-2 inline  line-through'>&#8377; {ele.price.toLocaleString('en-In')}</p>
-                                    <button className='border w-full px-3  bg-red-500 rounded-2xl text-white hover:bg-red-600 duration-300'>Add to cart</button>
+                                    <button className='border w-full px-3  bg-red-500 rounded-2xl text-white hover:bg-red-600 duration-300' onClick={(e) => handleAddToCart(e, ele?._id)}>Add to cart</button>
                                 </div>
                             </div>
                         </Link>

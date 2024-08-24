@@ -7,6 +7,9 @@ import ShowInfoDetail from '../components/ShowInfoDetail';
 import ShowImageDetailLoader from '../components/Loader/ShowImageDetailLoader';
 import ShowDetailLoader from '../components/Loader/ShowDetailLoader';
 import RecommendedCart from '../components/RecommendedCart';
+import VerticalCard from '../components/VerticalCard'
+
+
 
 
 const ShowProduct = () => {
@@ -64,7 +67,7 @@ const ShowProduct = () => {
         )
       }
       <div>
-        {productDetail.category && <RecommendedCart category = {productDetail?.category} title = {"Recommended Product"}/>}
+        {productDetail.category && <RecommendedCart category = {productDetail?.category} title = {"Recommended Product"} />}
       </div>
       <div>
         Review

@@ -10,6 +10,8 @@ import AllUser from '../components/allUser.jsx';
 import AddProduct from '../components/AddProduct.jsx';
 import Product from '../pages/Product.jsx';
 import ShowProduct from '../pages/ShowProduct.jsx';
+import Cart from '../pages/Cart.jsx';
+import Search from '../pages/Search.jsx';
 
 const router = createBrowserRouter([
     {
@@ -49,6 +51,14 @@ const router = createBrowserRouter([
             {
                 path:'/product/:id',
                 element:<ShowProduct/>
+            },
+            {
+                path:'/cart',
+                element:<Cart/>
+            },
+            {
+                path:"/search",
+                element:<Search/>
             }
 
 

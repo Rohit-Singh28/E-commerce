@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express();
 const cors = require("cors");
 require('dotenv').config();
 const connectdb = require('./config/db.js')
@@ -10,7 +11,6 @@ const path = require("path");
 const cookieParser = require('cookie-parser')
 
 
-const app = express();
 const port = 3000 || process.env.PORT ;
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -18,9 +18,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 // app.use(methodOverride('_method'));
-
-const corsOption = {
-}
 
 app.use(cors());
 
@@ -32,7 +29,6 @@ app.get("/",(req,res) => {
 app.use('/api',signupRouter)
 app.use('/api',loginRouter)
 app.use('/api',userDeatilRouter)
-
 app.use('/api',newProductRouter)
 
 

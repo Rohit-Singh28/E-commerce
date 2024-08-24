@@ -72,7 +72,7 @@ const AddProduct = ({ onclose , setUploadForm,fetchData}) => {
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-        console.log(data);
+        // console.log(data);
 
         try {
 
