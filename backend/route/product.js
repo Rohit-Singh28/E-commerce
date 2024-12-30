@@ -17,6 +17,7 @@ const addToCartcontroller = require("../controller/cart/addToCart.js")
 const cartDetailConttroller = require("../controller/cart/getCartDetail.js")
 const updateCartController = require("../controller/cart/UpdateCart.js")
 const deleteCartController = require("../controller/cart/deleteCart.js");
+const deleteCartUserController = require("../controller/cart/deletecartUser.js")
  
 
 
@@ -36,6 +37,7 @@ router.post('/cart',AuthenticateUser,wrapAsync(addToCartcontroller))
 router.get('/cart',AuthenticateUser,wrapAsync(cartDetailConttroller))
 router.post('/cart/:id',AuthenticateUser,wrapAsync(updateCartController))  
 router.delete("/cart/:id",AuthenticateUser,deleteCartController)
+router.delete("/cart",AuthenticateUser,wrapAsync(deleteCartUserController))
 
 
 module.exports = router;

@@ -50,7 +50,8 @@ const Signup = () => {
     e.preventDefault();
     if (setData.confirmPassword === setData.password) {
 
-      const response = await axios.post("/api/signup", setData);
+      try {
+        const response = await axios.post("/api/signup", setData);
       console.log(response);
       if (response.statusText == 'OK') {
         setSetData({
@@ -61,6 +62,9 @@ const Signup = () => {
         })
         toast.success("User created successfully");
         navigate('/login')
+      }
+      } catch (error) {
+        toast.error("User with this email already exist !");
       }
 
 

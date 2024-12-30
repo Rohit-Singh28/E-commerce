@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import { Link } from 'react-router-dom';
 
 const CategoryOpt = () => {
 
+    
     const [categoryProduct, setCategoryProduct] = useState([]);
     const[loader,setLoader] = useState(false);
     const loaderData = new Array(10).fill(null);
@@ -40,12 +42,14 @@ const CategoryOpt = () => {
                 ):(
                     categoryProduct.map((product) => {
                         return (
-                            <div className='flex flex-col' key={uuidv4()}>
+                         <Link to={`/${product.category}`} key={uuidv4()}>
+                               <div className='flex flex-col'  >
                                 <div className='w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden p-4 bg-slate-200 flex items-center justify-center'>
                                     <img src={product.productImage[0]} alt="img" className='h-full mix-blend-multiply object-scale-down  hover:scale-125 transition-all ' />
                                 </div>
                                 <p className='text-center text-sm md:text-base capitalize'>{product?.category}</p>
                             </div>
+                         </Link>
                         )
                     })
                 )

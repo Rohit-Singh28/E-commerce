@@ -25,7 +25,7 @@ const Admin = () => {
                 <div className='font-semibold flex flex-col gap-y-10 mt-4 cursor-pointer'>
                     <Link to={''}><div>Products</div></Link>
                     <Link to={'all-user'}><div>All user</div></Link>
-
+                    <Link to={'order-receicved'}><div>All Orders</div></Link>
                 </div>
             </aside>
 

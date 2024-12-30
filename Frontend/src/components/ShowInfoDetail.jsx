@@ -3,26 +3,44 @@ import { IoStar } from "react-icons/io5";
 import addToCart from '../helper/addToCart';
 import { toast } from 'react-toastify';
 import Context from '../context';
+import { useNavigate } from 'react-router-dom';
 
 
 const ShowInfoDetail = ({ productDetail }) => {
 
-  const {fetchCartDetail} = useContext  (Context)
+  const { fetchCartDetail } = useContext(Context)
+  const navigate = useNavigate();
 
-  const handleAddToCart = async (e,id) => {
+  const handleAddToCart = async (e, id) => {
     e.stopPropagation();
     e.preventDefault();
-    console.log(id);
-    const response =  await addToCart(id);
-    if(response.data.success == true){
-        toast.success(response?.data?.message);
-        fetchCartDetail();
+    // console.log(id);
+    const response = await addToCart(id);
+    if (response.data.success == true) {
+      toast.success(response?.data?.message);
+      fetchCartDetail();
     }
-    else{
-        toast.error(response?.data?.message);
+    else {
+      toast.error(response?.data?.message);
     }
-    
-}
+
+  }
+
+  const handleBuyProduct = async(e, id) => {
+    e.stopPropagation();
+    e.preventDefault();
+    // console.log(id);
+    const response = await addToCart(id);
+    if (response.data.success == true) {
+      // toast.success(response?.data?.message);
+      fetchCartDetail();
+      navigate("/cart")
+    }
+    else {
+      toast.error(response?.data?.message);
+    }
+
+  }
   // console.log(productDetail);
   return (
     <div className='flex flex-col gap-4 md:gap-6'>

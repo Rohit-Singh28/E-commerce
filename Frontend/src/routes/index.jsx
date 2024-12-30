@@ -12,6 +12,11 @@ import Product from '../pages/Product.jsx';
 import ShowProduct from '../pages/ShowProduct.jsx';
 import Cart from '../pages/Cart.jsx';
 import Search from '../pages/Search.jsx';
+import Category from '../pages/Category.jsx';
+import Success from '../pages/success.jsx';
+import Cancel from '../pages/Cancel.jsx';
+import OrderDetails from '../pages/OrderDetails.jsx';
+import OrderReceived from '../components/OrderReceived.jsx';
 
 const router = createBrowserRouter([
     {
@@ -45,6 +50,10 @@ const router = createBrowserRouter([
                     {
                         path:'all-user',
                         element:<AllUser/>
+                    },
+                    {
+                        path:'order-receicved',
+                        element:<OrderReceived/>
                     }
                 ]
             },
@@ -59,6 +68,28 @@ const router = createBrowserRouter([
             {
                 path:"/search",
                 element:<Search/>
+            },
+            {
+                path:'/:category',
+                element:<Category/>
+            },
+            {
+                path:'/payment',
+              
+                children:[
+                    {
+                        path:"success",
+                        element:<Success/>
+                    },
+                    {
+                        path:"cancel",
+                        element:<Cancel/>
+                    }
+                ]
+            },
+            {
+                path:'/orderdetails',
+                element:<OrderDetails/>
             }
 
 

@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { loadStripe } from '@stripe/stripe-js';
 
 
 const Cart = () => {
@@ -14,7 +15,7 @@ const Cart = () => {
   const fetch = async () => {
 
     const response = await fetchCartDetail();
-    console.log(response);
+    // console.log(response);
 
     setData(response?.data?.data)
 
@@ -52,7 +53,7 @@ const Cart = () => {
       toast.error(error)
     }
   }
-  
+
   const handleRemove = async (e, ele) => {
     e.preventDefault();
     e.stopPropagation();
@@ -73,6 +74,25 @@ const Cart = () => {
   const totalPrice = data.reduce((preve, curr) => preve + (curr.quantity * curr?.p_id?.sellingPrice), 0)
   // console.log(totalQty,totalPrice);
 
+  const handlePayment = async (e) => {
+    // console.log(data.data);
+    // e.preventDefault();
+    try {
+      const stripePromise = loadStripe('pk_test_51QbEpBGE9xT1l4LhXoZKEE8x4oqJJdiy5a1wkcEyeOxLBLo7hSCS4V582QoKrOj27V3Ihusl9ni1leqGdgk956ld004Ffmx132');
+      const response = await axios.post("/api/payment", { data })
+      if (response.data.id) {
+        const stripe = await stripePromise;
+        const result = await stripe.redirectToCheckout({
+          sessionId: response.data.id,
+        });
+        if (result.error) {
+          toast.error(result.error.message)
+        }
+      }
+    } catch (error) {
+      toast.error(error)
+    }
+  }
 
   useEffect(() => {
     fetch();
@@ -89,7 +109,7 @@ const Cart = () => {
         {
           data?.map((ele) => {
             return (
-              <Link to={`/product/${ele.p_id._id}`} key={uuidv4()} className='w-full  md:w-full  bg-white rounded-sm shadow'>
+              <Link to={`/product/${ele?.p_id?._id}`} key={uuidv4()} className='w-full  md:w-full  bg-white rounded-sm shadow'>
                 <div className='flex gap-4 border  h-[160px] md:h-[160px] rounded-lg hover:shadow-lg  duration-400'  >
                   <div className='bg-slate-200 w-[130px] md:w-[180px]'>
                     <img src={ele.p_id.productImage[0]} alt="img" className='w-full h-full  mix-blend-multiply object-scale-down ' />
@@ -126,7 +146,9 @@ const Cart = () => {
             <p>&#8377; {totalPrice.toLocaleString('en-In')}</p>
           </div>
         </div>
-        <button className='relative bottom-0 w-full p-2 text-xl border px-3  bg-green-500 text-white hover:bg-green-600 duration-300'>Payment</button>
+        <button
+          onClick={handlePayment}
+          className='relative bottom-0 w-full p-2 text-xl border px-3  bg-green-500 text-white hover:bg-green-600 duration-300'>Payment</button>
       </div>
     </div>
   )

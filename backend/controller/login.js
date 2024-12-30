@@ -1,5 +1,5 @@
 const usermodel = require("../model/user.js");
-const CustomError = require("../utils/customError");
+const CustomError = require("../utils/customError.js");
 const bcrypt = require("bcrypt")
 const jwt = require('jsonwebtoken');
 const { version } = require("mongoose");

@@ -23,11 +23,13 @@ function Header() {
   // console.log(user);
 
   // search
-  const handleSearch = (e) => {
+  const handleSearch = async(e) => {
     const value = (e.target.value);
     setSearch(value);
     if(e.target.value){
-      navigate(`/search?q=${search}`)
+
+      
+      navigate(`/search?q=${e.target.value}`)
     }else{
       navigate('/search')
 

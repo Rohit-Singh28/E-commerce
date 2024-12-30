@@ -18,7 +18,7 @@ const Product = () => {
     try {
       const response = await axios.get('/api/product');
       if (response.data.success) {
-        console.log(response);
+        // console.log(response);
         setAllProduct(response.data.data);
         
       }

@@ -5,6 +5,7 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { v4 as uuidv4 } from 'uuid';
 import { Link,useNavigate } from 'react-router-dom';
+import addToCart from '../helper/addToCart';
 import Context from '../context';
 
 const HorizontalCard = ({ category, title }) => {
@@ -39,6 +40,19 @@ const HorizontalCard = ({ category, title }) => {
         scrollElement.current.scrollLeft += 300
     }
 
+    const handleAddToCart = async (e,id) => {
+        e.stopPropagation();
+        e.preventDefault();
+        const response =  await addToCart(id);
+        if(response.data.success == true){
+            toast.success(response?.data?.message);
+            fetchCartDetail();
+        }
+        else{
+            toast.error(response?.data?.message);
+        }
+        
+    }
    
 
     useEffect(() => {
