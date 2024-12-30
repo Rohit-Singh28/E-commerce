@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setUserDetail } from './store/userSlice'
 import Context from './context'
 import './App.css'
-import { ToastContainer } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 axios.defaults.withCredentials = true
 
 

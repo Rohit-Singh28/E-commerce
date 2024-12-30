@@ -20,12 +20,12 @@ const Search = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`${BackendURL}api/search?q=${q}`);
+      const res = await axios.get(`${BackendURL}/api/search?q=${q}`);
       setProduct(res?.data?.data)
       // console.log(res?.data?.data);
     }
     catch (error) {
-      log.error(error);
+      console.log(error);
     }
 
     setLoading(false);
