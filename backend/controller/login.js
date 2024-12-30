@@ -35,7 +35,13 @@ const loign = async (req, res) => {
         id: user.id
     }, process.env.JWT_SECRET_KEY, { expiresIn: 60 * 60 * 8 })
 
-    res.cookie("jwttoken", token).json({
+    const tokenOption = {
+        httpOnly: true,
+        secure: false,
+        sameSite: 'none'
+    }
+
+    res.cookie("jwttoken", token , tokenOption).json({
         token: token,
         success: true,
         error: false,
