@@ -2,7 +2,7 @@ const logout = async(req,res) => {
     const tokenOption = {
         httpOnly: true,
         secure: false,
-        sameSite: 'none'
+        sameSite: 'None'
     }
     res.clearCookie("jwttoken",tokenOption).json({
         success:true,

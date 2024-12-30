@@ -38,7 +38,7 @@ const loign = async (req, res) => {
     const tokenOption = {
         httpOnly: true,
         secure: false,
-        sameSite: 'none'
+        sameSite: 'None'
     }
 
     res.cookie("jwttoken", token , tokenOption).json({
