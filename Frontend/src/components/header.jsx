@@ -11,7 +11,7 @@ import { IoSearch } from "react-icons/io5";
 
 
 
-function Header() {
+const Header = () => {
 
   const user = useSelector(state => state?.user?.user)
   const context = useContext(Context);
