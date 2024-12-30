@@ -33,12 +33,13 @@ const loign = async (req, res) => {
     const token = jwt.sign({
         name: user.name,
         id: user.id
-    }, process.env.JWT_SECRET_KEY, { expiresIn: 60 * 60 * 8 })
+    }, process.env.JWT_SECRET_KEY, { expiresIn: '8h'})
 
     const tokenOption = {
         httpOnly: true,
         secure: false,
-        sameSite: 'None'
+        sameSite: 'lax',
+        maxAge: 8 * 60 * 60 * 1000
     }
 
     res.cookie("jwttoken", token , tokenOption).json({
