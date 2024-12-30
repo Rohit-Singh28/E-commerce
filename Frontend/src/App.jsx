@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
-import Header from './components/Header'
 import Footer from './components/footer'
+import Navbar from './components/Navbar'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -44,7 +44,7 @@ function App() {
   return (
     <>
       <Context.Provider value={{fetchUserInfo , count ,fetchCartDetail}}>
-        <Header />
+        <Navbar/>
         <ToastContainer/>
         <main className='min-h-[calc(100vh-90px)] relative top-[70px] mx-4'>
           <Outlet />

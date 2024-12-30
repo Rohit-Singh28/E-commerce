@@ -11,7 +11,7 @@ import { IoSearch } from "react-icons/io5";
 
 
 
-const Header = () => {
+const Navbar = () => {
 
   const user = useSelector(state => state?.user?.user)
   const context = useContext(Context);
@@ -102,4 +102,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Navbar
