@@ -10,8 +10,9 @@ import FullImage from './FullImage';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-const AddProduct = ({ onclose , setUploadForm,fetchData}) => {
+const AddProduct = ({ onclose, setUploadForm, fetchData }) => {
 
+    const BackendURL = import.meta.env.VITE_APP_BACKEND_URL
 
     const [data, setData] = useState({
         productName: '',
@@ -76,7 +77,7 @@ const AddProduct = ({ onclose , setUploadForm,fetchData}) => {
 
         try {
 
-            const response = await axios.post('/api/product', data)
+            const response = await axios.post(`${BackendURL}/api/product`, data)
             if (response.data.success) {
                 setData({
                     productName: '',

@@ -10,7 +10,8 @@ import FullImage from './FullImage';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-const ProductUpdate = ({ data, onclose , fetchData }) => {
+const ProductUpdate = ({ data, onclose, fetchData }) => {
+    const BackendURL = import.meta.env.VITE_APP_BACKEND_URL
 
     const [newData, setNewData] = useState({
         ...data
@@ -58,8 +59,8 @@ const ProductUpdate = ({ data, onclose , fetchData }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put('/api/product',newData);
-            if(response.data.success){
+            const response = await axios.put(`${BackendURL}/api/product`, newData);
+            if (response.data.success) {
                 toast.success(response.data.message)
                 onclose();
                 await fetchData();

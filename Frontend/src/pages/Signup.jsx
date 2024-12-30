@@ -8,7 +8,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
-  console.log("d");
+  // console.log("d");
+  const BackendURL = import.meta.env.VITE_APP_BACKEND_URL
+
 
   const [show, setShow] = useState(false);
   const [showC, setShowC] = useState(false);
@@ -51,7 +53,7 @@ const Signup = () => {
     if (setData.confirmPassword === setData.password) {
 
       try {
-        const response = await axios.post("/api/signup", setData);
+        const response = await axios.post(`${BackendURL}/api/signup`, setData);
       console.log(response);
       if (response.statusText == 'OK') {
         setSetData({

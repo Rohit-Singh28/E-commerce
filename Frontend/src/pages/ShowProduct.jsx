@@ -13,6 +13,7 @@ import VerticalCard from '../components/VerticalCard'
 
 
 const ShowProduct = () => {
+  const BackendURL = import.meta.env.VITE_APP_BACKEND_URL
 
   const { id } = useParams();
   const [productDetail, setProductDetail] = useState({});
@@ -21,7 +22,7 @@ const ShowProduct = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`/api/product/${id}`);
+      const response = await axios.get(`${BackendURL}/api/product/${id}`);
       setLoading(false);
       if (response?.data?.success) {
         setProductDetail(response?.data?.data);

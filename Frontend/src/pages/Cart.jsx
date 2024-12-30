@@ -8,6 +8,8 @@ import { loadStripe } from '@stripe/stripe-js';
 
 
 const Cart = () => {
+  const BackendURL = import.meta.env.VITE_APP_BACKEND_URL
+
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const { fetchCartDetail } = useContext(Context)
@@ -28,7 +30,7 @@ const Cart = () => {
     // console.log(ele);
     if (ele.quantity > 1) {
       try {
-        const response = await axios.post(`/api/cart/${ele._id}`, { quantity: (ele.quantity - 1) })
+        const response = await axios.post(`${BackendURL}/api/cart/${ele._id}`, { quantity: (ele.quantity - 1) })
         // console.log(response);
         if (response?.data?.success) {
           fetch();
@@ -44,7 +46,7 @@ const Cart = () => {
     e.stopPropagation()
     // console.log(ele);
     try {
-      const response = await axios.post(`/api/cart/${ele._id}`, { quantity: (ele.quantity + 1) })
+      const response = await axios.post(`${BackendURL}/api/cart/${ele._id}`, { quantity: (ele.quantity + 1) })
       // console.log(response);
       if (response?.data?.success) {
         fetch();
@@ -59,7 +61,7 @@ const Cart = () => {
     e.stopPropagation();
 
     try {
-      const response = await axios.delete(`/api/cart/${ele._id}`)
+      const response = await axios.delete(`${BackendURL}/api/cart/${ele._id}`)
       // console.log(response);
       if (response?.data?.success) {
         fetch();
@@ -79,7 +81,7 @@ const Cart = () => {
     // e.preventDefault();
     try {
       const stripePromise = loadStripe('pk_test_51QbEpBGE9xT1l4LhXoZKEE8x4oqJJdiy5a1wkcEyeOxLBLo7hSCS4V582QoKrOj27V3Ihusl9ni1leqGdgk956ld004Ffmx132');
-      const response = await axios.post("/api/payment", { data })
+      const response = await axios.post(`${BackendURL}/api/payment`, { data })
       if (response.data.id) {
         const stripe = await stripePromise;
         const result = await stripe.redirectToCheckout({

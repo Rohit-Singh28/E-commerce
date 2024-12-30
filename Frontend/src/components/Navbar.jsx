@@ -12,6 +12,7 @@ import { IoSearch } from "react-icons/io5";
 
 
 const Navbar = () => {
+  const BackendURL = import.meta.env.VITE_APP_BACKEND_URL
 
   const user = useSelector(state => state?.user?.user)
   const context = useContext(Context);
@@ -23,24 +24,24 @@ const Navbar = () => {
   // console.log(user);
 
   // search
-  const handleSearch = async(e) => {
+  const handleSearch = async (e) => {
     const value = (e.target.value);
     setSearch(value);
-    if(e.target.value){
+    if (e.target.value) {
 
-      
+
       navigate(`/search?q=${e.target.value}`)
-    }else{
+    } else {
       navigate('/search')
 
     }
   }
 
   // console.log(search);
-  
+
   //logout
   const LogoutClicked = async () => {
-    const response = await axios.get('/api/logout');
+    const response = await axios.get(`${BackendURL}/api/logout`);
     // console.log(response);
     if (response.data.success) {
       toast.success(response.data.message);

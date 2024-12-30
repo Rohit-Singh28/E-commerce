@@ -4,23 +4,24 @@ import { toast } from 'react-toastify';
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { v4 as uuidv4 } from 'uuid';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import addToCart from '../helper/addToCart';
 import Context from '../context';
 
 const HorizontalCard = ({ category, title }) => {
+    const BackendURL = import.meta.env.VITE_APP_BACKEND_URL
 
     const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(false);
     const demoProduct = new Array(8).fill(null);
     const scrollElement = useRef()
-    const {fetchCartDetail} = useContext(Context)
+    const { fetchCartDetail } = useContext(Context)
     const navigate = useNavigate();
 
-    const fetchData = async () => {        
+    const fetchData = async () => {
         try {
             setLoading(true);
-            const response = await axios(`/api/product/category/${category}`);
+            const response = await axios(`${BackendURL}/api/product/category/${category}`);
             setLoading(false)
             if (response.data.success) {
                 setProduct(response.data.data);
@@ -40,20 +41,20 @@ const HorizontalCard = ({ category, title }) => {
         scrollElement.current.scrollLeft += 300
     }
 
-    const handleAddToCart = async (e,id) => {
+    const handleAddToCart = async (e, id) => {
         e.stopPropagation();
         e.preventDefault();
-        const response =  await addToCart(id);
-        if(response.data.success == true){
+        const response = await addToCart(id);
+        if (response.data.success == true) {
             toast.success(response?.data?.message);
             fetchCartDetail();
         }
-        else{
+        else {
             toast.error(response?.data?.message);
         }
-        
+
     }
-   
+
 
     useEffect(() => {
         fetchData();
@@ -61,7 +62,7 @@ const HorizontalCard = ({ category, title }) => {
 
 
 
-  
+
 
     return (
         <div className='my-8 mb-8'>
@@ -70,7 +71,7 @@ const HorizontalCard = ({ category, title }) => {
                 <button className='text-2xl bg-white p-1 rounded-[50%]  z-20' onClick={handleLeftMove}>
                     <MdKeyboardArrowLeft />
 
-                </button>   
+                </button>
                 <button className='text-2xl bg-white p-1 rounded-[50%] transition-all z-20' onClick={handleRightMove}>
                     <MdKeyboardArrowRight />
                 </button>

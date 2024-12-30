@@ -3,11 +3,13 @@ import { toast } from 'react-toastify'
 import axios from 'axios'
 
 const OrderDetails = () => {
+  const BackendURL = import.meta.env.VITE_APP_BACKEND_URL
+
   const [orderDetails, setOrderDetails] = useState([]);
 
   const fetchOrderDetails = async () => {
     try {
-      const response = await axios.get('/api/orderDetails');
+      const response = await axios.get(`${BackendURL}/api/orderDetails`);
       if (response.data.error) {
         toast.error(response.data.message);
         return;

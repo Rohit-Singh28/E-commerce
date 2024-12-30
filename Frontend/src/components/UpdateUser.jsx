@@ -11,19 +11,20 @@ const UpdateUser = ({
 
     const { role } = updateUserDetail;
     const [roleUpdate, setRoleUpdate] = useState(role);
+    const BackendURL = import.meta.env.VITE_APP_BACKEND_URL
 
 
     const handleRole = (e) => {
         setRoleUpdate(e.target.value);
     }
 
-    const handleUpdate = async (req,res) => {
-        const response = await axios.put('/api/update',{...updateUserDetail,role:roleUpdate});
-        if(response.data.success){
+    const handleUpdate = async (req, res) => {
+        const response = await axios.put(`${BackendURL}/api/update`, { ...updateUserDetail, role: roleUpdate });
+        if (response.data.success) {
             console.log(response.data);
-             toast.success(response.data.message);
-             callFn();
-             onClose();
+            toast.success(response.data.message);
+            callFn();
+            onClose();
         }
     }
 

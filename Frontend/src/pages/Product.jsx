@@ -7,20 +7,21 @@ import ProductUpdate from '../components/ProductUpdate';
 
 
 const Product = () => {
+  const BackendURL = import.meta.env.VITE_APP_BACKEND_URL
 
   const [uploadForm, setUploadForm] = useState(false);
   const [allProduct, setAllProduct] = useState([]);
   const [shoowUpdateForm, setShowUpdateForm] = useState(false);
-  const [updatePrdouctData,setUpdateProductData] = useState({});
+  const [updatePrdouctData, setUpdateProductData] = useState({});
 
 
   const fetchAllPrdouctData = async () => {
     try {
-      const response = await axios.get('/api/product');
+      const response = await axios.get(`${BackendURL}/api/product`);
       if (response.data.success) {
         // console.log(response);
         setAllProduct(response.data.data);
-        
+
       }
       else {
         toast.error(response.data.message);
@@ -47,7 +48,7 @@ const Product = () => {
         {
           allProduct.map((ele) => {
             return (
-              <AdminProductCart data={ele} key={uuidv4()} updateForm = {() => {setShowUpdateForm(true)}}  setUpdateProductData = {setUpdateProductData} fetchData={fetchAllPrdouctData}/>
+              <AdminProductCart data={ele} key={uuidv4()} updateForm={() => { setShowUpdateForm(true) }} setUpdateProductData={setUpdateProductData} fetchData={fetchAllPrdouctData} />
             )
           })
         }
@@ -64,7 +65,7 @@ const Product = () => {
       {/* UpdateForm */}
       <div>
         {
-          shoowUpdateForm && <ProductUpdate data={updatePrdouctData} onclose={() => { setShowUpdateForm(false) }} fetchData={fetchAllPrdouctData}/>
+          shoowUpdateForm && <ProductUpdate data={updatePrdouctData} onclose={() => { setShowUpdateForm(false) }} fetchData={fetchAllPrdouctData} />
         }
       </div>
 

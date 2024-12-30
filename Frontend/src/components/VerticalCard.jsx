@@ -10,6 +10,7 @@ import Context from '../context';
 import { v4 as uuidv4 } from 'uuid';
 
 const VerticalCard = ({ category, title }) => {
+    const BackendURL = import.meta.env.VITE_APP_BACKEND_URL
 
     const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -20,7 +21,7 @@ const VerticalCard = ({ category, title }) => {
     const fetchData = async () => {
         try {
             setLoading(true);
-            const response = await axios(`/api/product/category/${category}`);
+            const response = await axios(`${BackendURL}/api/product/category/${category}`);
             setLoading(false)
             if (response.data.success) {
                 setProduct(response.data.data);

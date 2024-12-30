@@ -9,7 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Context from '../context';
 
 const Signup = () => {
-
+  
+  const BackendURL = import.meta.env.VITE_APP_BACKEND_URL
   const [show, setShow] = useState(false);
   const [setData, setSetData] = useState({
     email: "",
@@ -38,7 +39,7 @@ const Signup = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/login', setData);
+      const response = await axios.post(`${BackendURL}/api/login`, setData);
       if (response.data.result) {
         toast.success(response.data.message);
         navigate('/')

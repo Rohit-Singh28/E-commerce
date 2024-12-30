@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import addToCart from '../helper/addToCart';
 
 const Search = () => {
+  const BackendURL = import.meta.env.VITE_APP_BACKEND_URL
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
@@ -14,14 +15,14 @@ const Search = () => {
   const [product, setProduct] = useState([]);
 
   const q = searchParams.get('q');
-  console.log(q);
+  // console.log(q);
 
   const fetchData = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`api/search?q=${q}`);
+      const res = await axios.get(`${BackendURL}api/search?q=${q}`);
       setProduct(res?.data?.data)
-      console.log(res?.data?.data);
+      // console.log(res?.data?.data);
     }
     catch (error) {
       log.error(error);

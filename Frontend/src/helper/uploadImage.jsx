@@ -6,7 +6,7 @@ const addImageToCloudinary = async(image) => {
         formData.append("upload_preset","Mern_Ecommerce")
         formData.append("cloud_name","dr0lc5zxc")
 
-        const response  = await axios.post('https://api.cloudinary.com/v1_1/dr0lc5zxc/image/upload',formData);
+        const response  = await axios.post('https://api.cloudinary.com/v1_1/dr0lc5zxc/image/upload',formData,{ withCredentials: false });
         console.log(response);
 
         return response.data.url;

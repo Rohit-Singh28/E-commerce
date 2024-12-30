@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 
 const AdminProductCart = ({ data, updateForm, setUpdateProductData,fetchData }) => {
 
+  const BackendURL = import.meta.env.VITE_APP_BACKEND_URL
   const navigate = useNavigate(); 
 
   const handleUpdate = () => {
@@ -18,7 +19,7 @@ const AdminProductCart = ({ data, updateForm, setUpdateProductData,fetchData }) 
   const handleDelete = async(id) => {
    
     try{
-      const response = await axios.delete('/api/product',{
+      const response = await axios.delete(`${BackendURL}/api/product`,{
         data: {
           _id: id
         }

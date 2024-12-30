@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 const OrderReceived = () => {
+    const BackendURL = import.meta.env.VITE_APP_BACKEND_URL
+
     const [data, setData] = useState([]);
     console.log(data);
-    
+
     const fetchData = async () => {
         try {
-            const response = await axios.get("/api/allOrders");
+            const response = await axios.get(`${BackendURL}/api/allOrders`);
             const dataReceived = response.data.data;
             dataReceived.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
             setData(dataReceived);
@@ -17,20 +19,20 @@ const OrderReceived = () => {
         }
     };
 
-    const handleChange = async(e,orderId) => {
+    const handleChange = async (e, orderId) => {
         // console.log(e.target.value);
         // console.log(orderId);
         try {
-            const response = await axios.put("/api/updateStatus",{status:e.target.value,orderID:orderId});
-            if(response.data.success){
+            const response = await axios.put(`${BackendURL}/api/updateStatus`, { status: e.target.value, orderID: orderId });
+            if (response.data.success) {
                 fetchData();
             }
-            
+
         } catch (error) {
             toast.error(error)
         }
-        
-        
+
+
     }
 
     useEffect(() => {
@@ -56,7 +58,7 @@ const OrderReceived = () => {
                                         }`}>
                                         {order.orderStatus}
                                     </span>
-                                    <select name="orderStaus" id="" className='border border-blue-400' onChange={(e) => handleChange(e,order._id)}>
+                                    <select name="orderStaus" id="" className='border border-blue-400' onChange={(e) => handleChange(e, order._id)}>
                                         <option value={order.orderStatus}>{order.orderStatus}</option>
                                         <option value="pending">pending</option>
                                         <option value="on the way">on the way</option>
