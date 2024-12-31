@@ -66,7 +66,7 @@ const Signup = () => {
         navigate('/login')
       }
       } catch (error) {
-        toast.error("User with this email already exist !");
+        toast.error(error);
       }
 
 
@@ -153,7 +153,7 @@ const Signup = () => {
 
             <button
               className=' self-center bg-red-500 hover:scale-110 hover:bg-red-600 my-4 py-2 w-20 rounded-2xl duration-200 text-white'
-            >login</button>
+            >Sign up</button>
 
           </form>
 
