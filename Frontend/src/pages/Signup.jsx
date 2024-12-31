@@ -55,7 +55,7 @@ const Signup = () => {
       try {
         const response = await axios.post(`${BackendURL}/api/signup`, setData);
       console.log(response);
-      if (response.statusText == 'OK') {
+      if (response.data.data.success) {
         setSetData({
           email: "",
           password: "",
@@ -66,7 +66,7 @@ const Signup = () => {
         navigate('/login')
       }
       } catch (error) {
-        toast.error(error);
+        toast.error("User with this email already exist !");
       }
 
 
