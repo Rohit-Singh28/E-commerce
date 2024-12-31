@@ -92,7 +92,7 @@ const VerticalCard = ({ category, title }) => {
                         product?.map((ele) => {
                             return (
                                 <Link to={`/product/${ele._id}`} key={uuidv4()}>
-                                    <div className='flex flex-col gap-4 border h-[390px] min-w-[300px] md:h-[420px] w-[350px] md:min-w-[350px] rounded-md hover:shadow-xl hover:scale-y-[1.03] duration-500' >
+                                    <div className='flex flex-col gap-4 border h-[390px]  md:h-[420px] w-[290px] md:min-w-[350px] rounded-md hover:shadow-xl hover:scale-y-[1.03] duration-500' >
                                         <div className='bg-slate-200  md:h-[60%] h-[60%] w-full  '>
                                             <img src={ele.productImage[0]} alt="img" className='h-full  mix-blend-multiply object-scale-down mx-auto py-2 ' />
                                         </div>

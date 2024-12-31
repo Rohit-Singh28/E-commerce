@@ -60,7 +60,7 @@ const AllUser = () => {
                                     <td>{ele.name}</td>
                                     <td>{ele.email}</td>
                                     <td>{ele.role}</td>
-                                    <td className='pl-8' ><div className=' hover:text-xl duration-200 ' onClick={() => handleUpdate(ele)}><GrEdit /></div></td>
+                                    <td className='pl-8 w-[100px]' ><div className=' hover:text-xl duration-200 ' onClick={() => handleUpdate(ele)}><GrEdit /></div></td>
                                 </tr>
                             )
                         })

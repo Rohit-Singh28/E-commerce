@@ -51,7 +51,7 @@ function App() {
       <Context.Provider value={{ fetchUserInfo, count, fetchCartDetail }}>
         <Navbar />
         <ToastContainer />
-        <main className='min-h-[calc(100vh-90px)] relative top-[70px] mx-4'>
+        <main className='min-h-[calc(100vh-90px)] relative top-[70px] mx-1 md:mx-4'>
           <Outlet />
         </main>
         <Footer />

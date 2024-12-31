@@ -7,4 +7,9 @@ table,th,td{
     display: none;
 }
 
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
 /*  */
