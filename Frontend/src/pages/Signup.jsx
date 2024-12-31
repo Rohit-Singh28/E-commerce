@@ -54,8 +54,8 @@ const Signup = () => {
 
       try {
         const response = await axios.post(`${BackendURL}/api/signup`, setData);
-      console.log(response);
-      if (response.data.data.success) {
+      // console.log(response.data.data);
+      if (response.data.success === true) {
         setSetData({
           email: "",
           password: "",
