@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { setUserDetail } from '../store/userSlice'
 import Context from '../context';
 import { IoSearch } from "react-icons/io5";
+import logo from '../assets/logo.jpeg'
 
 
 
@@ -51,11 +52,11 @@ const Navbar = () => {
   }
 
   return (
-    <header className='flex  items-center w-full h-[65px] px-4 shadow-xl border fixed top-0 z-40 bg-slate-200'>
+    <header className='flex items-center w-full h-[65px] px-4 shadow-xl border fixed top-0 z-40 bg-slate-200'>
 
-      <div className=' space-x-10'>
-        <h1 className='inline '>logo</h1>
-        <Link to={'/'} className='mx-4'>Home</Link>
+      <div className=' space-x-10  flex mix-blend-multiply brightness-110'>
+
+        <Link to={'/'} className='mx-4'><img src={logo} alt="logo" className='h-[9  0px] w-[100px] object-fill' /></Link>
       </div>
 
       <div className='hidden  mx-auto lg:flex items-center '>
@@ -72,7 +73,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className='flex gap-7 items-center absolute right-8'>
+      <div className='flex gap-7 items-center  px-4'>
         <div className='relative felx justify-center items-center flex-col cursor-pointer'>
 
           <div onClick={() => setMenuDisplay(!menuDisplay)}>
