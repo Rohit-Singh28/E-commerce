@@ -29,7 +29,7 @@ const Category = () => {
 
   return (
     <div className='flex gap-8 '>
-      <div className='my-10 mb-8 w-[20%] border h-screen p-3 flex flex-col gap-4'>
+      <div className='hidden  my-10 mb-8 w-[20%] border h-screen p-3 md:flex flex-col gap-4'>
         <h1 className='text-center text-2xl p-3 border-b-2'>Filters</h1>
         <h2 className='text-lg text-slate-600'>{category}</h2>
         <div>

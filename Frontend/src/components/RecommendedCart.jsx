@@ -52,7 +52,7 @@ const RecommendedCart = ({ category, title }) => {
     console.log(product);
 
     return (
-        <div className='my-8 mb-8'>
+        <div className='my-8 mb-8 mx-2'>
             <h1 className='text-xl md:text-2xl font-semibold'>{title}</h1>
 
             <div className='flex my-4 gap-6 flex-wrap' >

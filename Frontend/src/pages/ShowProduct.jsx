@@ -67,7 +67,7 @@ const ShowProduct = () => {
           </div>
         )
       }
-      <div>
+      <div className=''>
         {productDetail.category && <RecommendedCart category = {productDetail?.category} title = {"Recommended Product"} />}
       </div>
       <div>

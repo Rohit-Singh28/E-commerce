@@ -1,28 +1,59 @@
 import React from 'react'
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <footer className='bg-slate-200 grid grid-cols-3 px-10 gap-3 mt-2 relative  top-[70px]'>
-      <div>
-        <p className='my-4'>A</p>
-        <p className='my-4'>A</p>
-        <p className='my-4'>A</p>
-        <p className='my-4'>A</p>
-      </div>
-      <div>
-        <p className='my-4'>A</p>
-        <p className='my-4'>A</p>
-        <p className='my-4'>A</p>
-        <p className='my-4'>A</p>
-      </div>
-      <div>
-        <p className='my-4'>A</p>
-        <p className='my-4'>A</p>
-        <p className='my-4'>A</p>
-        <p className='my-4'>A</p>
+    <footer className="bg-slate-200 pt-10 pb-6 relative top-[70px]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div>
+            <h3 className="text-lg font-semibold mb-4">About Us</h3>
+            <p className="text-sm text-gray-600">We are dedicated to providing high-quality products and exceptional customer service.</p>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li><Link to="/" className="text-sm text-gray-600 hover:text-gray-900">Home</Link></li>
+              <li><Link to="/" className="text-sm text-gray-600 hover:text-gray-900">Products</Link></li>
+              <li><Link to="/" className="text-sm text-gray-600 hover:text-gray-900">About</Link></li>
+              <li><Link to="/" className="text-sm text-gray-600 hover:text-gray-900">Contact</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Customer Service</h3>
+            <ul className="space-y-2">
+              <li><Link to="/" className="text-sm text-gray-600 hover:text-gray-900">FAQ</Link></li>
+              <li><Link to="/" className="text-sm text-gray-600 hover:text-gray-900">Shipping</Link></li>
+              <li><Link to="/" className="text-sm text-gray-600 hover:text-gray-900">Returns</Link></li>
+              <li><Link to="/" className="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>
+            <div className="flex space-x-4">
+              <a href="/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
+                <FaFacebook size={20} />
+              </a>
+              <a href="/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
+                <FaTwitter size={20} />
+              </a>
+              <a href="/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
+                <FaInstagram size={20} />
+              </a>
+              <a href="/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
+                <FaLinkedin size={20} />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="mt-8 pt-8 border-t border-gray-300 text-center">
+          <p className="text-sm text-gray-600">&copy; {new Date().getFullYear()} Your Company Name. All rights reserved.</p>
+        </div>
       </div>
     </footer>
   )
 }
 
 export default Footer
+
